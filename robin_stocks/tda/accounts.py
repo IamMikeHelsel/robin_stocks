@@ -18,12 +18,7 @@ def get_accounts(options=None, jsonify=None):
         None if there was not an error.
     """
     url = URLS.accounts()
-    if options:
-        payload = {
-            "fields": options
-        }
-    else:
-        payload = None
+    payload = {"fields": options} if options else None
     data, error = request_get(url, payload, jsonify)
     return data, error
 
@@ -46,19 +41,16 @@ def get_account(id, options=None, jsonify=None):
         None if there was not an error.
     """
     url = URLS.account(id)
-    if options:
-        payload = {
-            "fields": options
-        }
-    else:
-        payload = None
+    payload = {"fields": options} if options else None
     data, error = request_get(url, payload, jsonify)
     return data, error
 
 
 @login_required
 @format_inputs
-def get_transactions(id, type_value=None, symbol=None, start_date=None, end_date=None, jsonify=None):
+def get_transactions(
+    id, type_value=None, symbol=None, start_date=None, end_date=None, jsonify=None
+):
     """ Get account information for a specific account.
 
     :param id: The account id.

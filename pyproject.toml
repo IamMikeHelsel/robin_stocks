@@ -1,0 +1,84 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "robin_stocks"
+version = "3.4.0"
+description = "A Python wrapper around the Robinhood API"
+readme = "README.rst"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "Josh Fernandes", email = "joshfernandes@mac.com"},
+]
+keywords = ["robinhood", "robin stocks", "finance app", "stocks", "options", "trading", "investing"]
+dependencies = [
+    "requests",
+    "pyotp",
+    "python-dotenv",
+    "cryptography",
+]
+
+[project.urls]
+Homepage = "https://github.com/jmfernandes/robin_stocks"
+
+[tool.ruff]
+# Python version target
+target-version = "py39"
+
+# Line length (matching Black's default)
+line-length = 88
+
+# Exclude directories
+exclude = [
+    ".git",
+    ".venv",
+    "__pycache__",
+    "docs",
+    "build",
+    "dist",
+    ".eggs",
+    "*.egg-info",
+]
+
+[tool.ruff.lint]
+# Enable pycodestyle (E), pyflakes (F), and isort (I) rules
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+# Ignore specific rules
+ignore = [
+    "E501",  # Line too long (let formatter handle this)
+    "F401",  # Imported but unused (for __init__.py files)
+    "F403",  # Star imports (used in __init__.py)
+    "F405",  # May be undefined from star imports
+    "B008",  # Do not perform function calls in argument defaults
+    "E722",  # Bare except (sometimes needed)
+    "SIM115", # Context handler for opening files (not always practical)
+]
+
+# Allow autofix for all enabled rules
+fixable = ["ALL"]
+
+[tool.ruff.format]
+# Use double quotes for strings
+quote-style = "double"
+
+# Indent with 4 spaces
+indent-style = "space"
+
+# Unix-style line endings
+line-ending = "auto"
+
+[tool.ruff.lint.isort]
+# Import sorting configuration
+known-first-party = ["robin_stocks"]
+combine-as-imports = true
+
+[tool.ruff.lint.per-file-ignores]
+# Allow unused imports in __init__.py files
+"__init__.py" = ["F401", "F403", "F405"]
+# Allow print statements in examples
+"examples/*" = ["T201", "S101"]
+# Test files can have more relaxed rules
+"tests/*" = ["S101", "PLR2004"]

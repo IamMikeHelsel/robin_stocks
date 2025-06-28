@@ -1,12 +1,12 @@
-import robin_stocks.robinhood as r 
+import robin_stocks.robinhood as r
 
-'''
+"""
 This is an example script that will show you how to check the performance of your open positions.
-'''
+"""
 
 #!!! Fill out username and password
-username = ''
-password = ''
+username = ""
+password = ""
 #!!!
 
 login = r.login(username, password)
@@ -27,10 +27,14 @@ prevClose = r.get_quotes(tickers, "previous_close")
 lastPrice = r.get_quotes(tickers, "last_trade_price")
 
 # Calculate the profit per share
-profitPerShare = [float(lastPrice[i]) - float(prevClose[i]) for i in range(len(tickers))]
+profitPerShare = [
+    float(lastPrice[i]) - float(prevClose[i]) for i in range(len(tickers))
+]
 
 # Calculate the percent change for each stock ticker
-percentChange = [ 100.0 * profitPerShare[i] / float(prevClose[i]) for i in range(len(tickers)) ]
+percentChange = [
+    100.0 * profitPerShare[i] / float(prevClose[i]) for i in range(len(tickers))
+]
 
 # Calcualte your profit for each stock ticker
 profit = [profitPerShare[i] * quantities[i] for i in range(len(tickers))]
@@ -40,11 +44,11 @@ tickersPerf = list(zip(profit, percentChange, tickers))
 
 tickersPerf.sort(reverse=True)
 
-print ("My Positions Performance:")
-print ("Ticker | DailyGain | PercentChange")
+print("My Positions Performance:")
+print("Ticker | DailyGain | PercentChange")
 for item in tickersPerf:
-  print ("%s %f$ %f%%" % (item[2], item[0], item[1]))
+    print(f"{item[2]} {item[0]:f}$ {item[1]:f}%")
 
-print ("Net Gain:", sum(profit))
+print("Net Gain:", sum(profit))
 
 r.logout()

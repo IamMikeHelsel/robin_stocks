@@ -1,6 +1,10 @@
-from robin_stocks.tda.helper import (format_inputs, login_required,
-                                     request_delete, request_get,
-                                     request_headers)
+from robin_stocks.tda.helper import (
+    format_inputs,
+    login_required,
+    request_delete,
+    request_get,
+    request_headers,
+)
 from robin_stocks.tda.urls import URLS
 
 
@@ -72,7 +76,14 @@ def get_order(account_id, order_id, jsonify=None):
 
 @login_required
 @format_inputs
-def get_orders_for_account(account_id, max_results=None, from_time=None, to_time=None, status=None, jsonify=None):
+def get_orders_for_account(
+    account_id,
+    max_results=None,
+    from_time=None,
+    to_time=None,
+    status=None,
+    jsonify=None,
+):
     """ Gets all the orders for a given account.
 
     :param account_id: The account id.

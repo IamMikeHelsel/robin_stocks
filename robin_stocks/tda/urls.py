@@ -1,4 +1,5 @@
-""" Module contains all the API endpoints """
+"""Module contains all the API endpoints"""
+
 from enum import Enum, auto
 from re import IGNORECASE, match, split
 
@@ -14,17 +15,20 @@ class AutoName(Enum):
 
 class Version(AutoName):
     """Enum for different version types"""
+
     v1 = auto()
     v2 = auto()
 
 
 class URLS:
-    """ Static class for holding all urls."""
+    """Static class for holding all urls."""
+
     __base_url = "https://api.tdameritrade.com"
 
     def __init__(self):
         raise NotImplementedError(
-            "Cannot create instance of {0}".format(self.__class__.__name__))
+            f"Cannot create instance of {self.__class__.__name__}"
+        )
 
     @classmethod
     def get_base_url(cls, version):
@@ -42,7 +46,7 @@ class URLS:
     # accounts.py
     @classmethod
     def account(cls, id):
-        return cls.get_base_url(Version.v1) + "accounts/{0}".format(id)
+        return cls.get_base_url(Version.v1) + f"accounts/{id}"
 
     @classmethod
     def accounts(cls):
@@ -50,11 +54,13 @@ class URLS:
 
     @classmethod
     def transaction(cls, id, transaction):
-        return cls.get_base_url(Version.v1) + "accounts/{0}/transactions/{1}".format(id, transaction)
+        return (
+            cls.get_base_url(Version.v1) + f"accounts/{id}/transactions/{transaction}"
+        )
 
     @classmethod
     def transactions(cls, id):
-        return cls.get_base_url(Version.v1) + "accounts/{0}/transactions".format(id)
+        return cls.get_base_url(Version.v1) + f"accounts/{id}/transactions"
 
     # authentication.py
     @classmethod
@@ -68,20 +74,20 @@ class URLS:
 
     @classmethod
     def market(cls, market):
-        return cls.get_base_url(Version.v1) + "marketdata/{0}/hours".format(market)
+        return cls.get_base_url(Version.v1) + f"marketdata/{market}/hours"
 
     @classmethod
     def movers(cls, index):
-        return cls.get_base_url(Version.v1) + "marketdata/{0}/movers".format(index)
+        return cls.get_base_url(Version.v1) + f"marketdata/{index}/movers"
 
     # orders.py
     @classmethod
     def orders(cls, account_id):
-        return cls.get_base_url(Version.v1) + "accounts/{0}/orders".format(account_id)
+        return cls.get_base_url(Version.v1) + f"accounts/{account_id}/orders"
 
     @classmethod
     def order(cls, account_id, order_id):
-        return cls.get_base_url(Version.v1) + "accounts/{0}/orders/{1}".format(account_id, order_id)
+        return cls.get_base_url(Version.v1) + f"accounts/{account_id}/orders/{order_id}"
 
     # stocks.py
     @classmethod
@@ -90,11 +96,11 @@ class URLS:
 
     @classmethod
     def instrument(cls, cusip):
-        return cls.get_base_url(Version.v1) + "instruments/{0}".format(cusip)
+        return cls.get_base_url(Version.v1) + f"instruments/{cusip}"
 
     @classmethod
     def quote(cls, ticker):
-        return cls.get_base_url(Version.v1) + "marketdata/{0}/quotes".format(ticker)
+        return cls.get_base_url(Version.v1) + f"marketdata/{ticker}/quotes"
 
     @classmethod
     def quotes(cls):
@@ -102,7 +108,7 @@ class URLS:
 
     @classmethod
     def price_history(cls, ticker):
-        return cls.get_base_url(Version.v1) + "marketdata/{0}/pricehistory".format(ticker)
+        return cls.get_base_url(Version.v1) + f"marketdata/{ticker}/pricehistory"
 
     @classmethod
     def option_chains(cls):

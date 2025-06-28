@@ -1,6 +1,10 @@
 from robin_stocks.gemini.authentication import generate_signature
-from robin_stocks.gemini.helper import (format_inputs, login_required,
-                                        request_get, request_post)
+from robin_stocks.gemini.helper import (
+    format_inputs,
+    login_required,
+    request_get,
+    request_post,
+)
 from robin_stocks.gemini.urls import URLS
 
 
@@ -131,9 +135,7 @@ def get_notional_volume(jsonify=None):
                       * notional_1d_volume - A list of 1 day notional volume for the past 30 days
     """
     url = URLS.notional_volume()
-    payload = {
-        "request": URLS.get_endpoint(url)
-    }
+    payload = {"request": URLS.get_endpoint(url)}
     generate_signature(payload)
     data, err = request_post(url, payload, jsonify)
     return data, err
@@ -172,16 +174,14 @@ def get_trade_volume(jsonify=None):
                       
     """
     url = URLS.trade_volume()
-    payload = {
-        "request": URLS.get_endpoint(url)
-    }
+    payload = {"request": URLS.get_endpoint(url)}
     generate_signature(payload)
     data, err = request_post(url, payload, jsonify)
     return data, err
 
 
 def get_price(ticker, side):
-    """ Returns either the bid or the ask price as a string.
+    """Returns either the bid or the ask price as a string.
 
     :param ticker: The ticker of the crypto.
     :type ticker: str
