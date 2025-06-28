@@ -3,7 +3,7 @@ Unit tests with mocked responses to avoid API dependencies.
 These tests can run without credentials and won't make real API calls.
 """
 
-from unittest.mock import MagicMock, Mock, patch
+from unittest.mock import Mock, patch
 
 import pytest
 

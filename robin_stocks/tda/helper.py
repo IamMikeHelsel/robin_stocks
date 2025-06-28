@@ -20,9 +20,9 @@ def get_order_number(data):
         else:
             parse_string = data
     except Exception as e:
-        raise ValueError(f"{e} is not a value in the dictionary")
+        raise ValueError(f"{e} is not a value in the dictionary") from e
 
-    _, order_id = split("orders/", parse_string, IGNORECASE)
+    _, order_id = split("orders/", parse_string, flags=IGNORECASE)
     return order_id
 
 

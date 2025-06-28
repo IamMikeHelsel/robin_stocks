@@ -1,6 +1,7 @@
 # Used by git Actions
 import datetime
 import os
+from typing import ClassVar
 
 import pyotp
 import pytest
@@ -50,8 +51,8 @@ class TestStocks:
         "https://api.robinhood.com/instruments/aaaaaaaa-0000-0000-0000-aaaaaaaaaaaa/"
     )
     id = "450dfc6d-5510-4d40-abfb-f633b7d9be3e"
-    list_stocks = ["tsla", "f", "plug", "meTA", "SPY", "botz", "jnug"]
-    fake_stocks = ["87627273", "ffffffffff"]
+    list_stocks: ClassVar[list[str]] = ["tsla", "f", "plug", "meTA", "SPY", "botz", "jnug"]
+    fake_stocks: ClassVar[list[str]] = ["87627273", "ffffffffff"]
 
     @classmethod
     def setup_class(cls):
@@ -459,7 +460,7 @@ class TestOptions:
             self.symbol, self.expiration_date, info="strike_price"
         )
         first = info[0]
-        assert type(first) == str
+        assert isinstance(first, str)
         assert len(info) > 50
         info = r.find_options_by_expiration(
             self.symbol, self.expiration_date, info="expiration_date"

@@ -5,8 +5,6 @@ file and the os.environ() function reads the values from the file.ß
 
 import os
 
-from dotenv import load_dotenv
-
 import robin_stocks.gemini as g
 
 ##

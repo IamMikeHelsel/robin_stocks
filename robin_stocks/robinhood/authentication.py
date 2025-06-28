@@ -122,7 +122,7 @@ def _validate_sherrif_id(device_token: str, workflow_id: str):
             if retry_attempts == 0:
                 raise TimeoutError(
                     "Max retries reached. Assuming login approved and proceeding."
-                )
+                ) from e
             print("Retrying workflow status check...")
             continue
 

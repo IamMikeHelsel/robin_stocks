@@ -9,8 +9,6 @@ import os
 from dotenv import load_dotenv
 
 import robin_stocks.gemini as gem
-import robin_stocks.robinhood as rh
-import robin_stocks.tda as tda
 
 # Load environment variables
 load_dotenv()

@@ -3,8 +3,6 @@
 from enum import Enum, auto
 from re import IGNORECASE, match, split
 
-from robin_stocks.gemini.helper import get_sandbox_flag
-
 
 class AutoName(Enum):
     """Automatically sets an enum value to be its name when using auto()"""
@@ -37,7 +35,7 @@ class URLS:
     @classmethod
     def get_endpoint(cls, url):
         if match(cls.__base_url, url, IGNORECASE):
-            _, end = split(cls.__base_url, url, IGNORECASE)
+            _, end = split(cls.__base_url, url, flags=IGNORECASE)
         else:
             raise ValueError("The URL has the wrong base.")
 

@@ -1,6 +1,5 @@
 """Holds the session header and other global variables."""
 
-import os
 import sys
 
 from requests import Session

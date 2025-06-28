@@ -16,15 +16,15 @@ Usage:
     python crypto_arbitrage_bot.py
 """
 
+import logging
 import os
 import time
-import logging
-from datetime import datetime
-from typing import Dict, List, Optional, Tuple
+from typing import Optional
+
 from dotenv import load_dotenv
 
-import robin_stocks.robinhood as rh
 import robin_stocks.gemini as gem
+import robin_stocks.robinhood as rh
 
 # Load environment variables
 load_dotenv()
@@ -144,7 +144,7 @@ class CryptoArbitrageBot:
 
         return None
 
-    def calculate_arbitrage_opportunity(self, gemini_symbol: str) -> Dict:
+    def calculate_arbitrage_opportunity(self, gemini_symbol: str) -> dict:
         """
         Calculate arbitrage opportunity for a symbol.
 
@@ -193,7 +193,7 @@ class CryptoArbitrageBot:
             "opportunity": profit_percentage >= self.min_profit_threshold,
         }
 
-    def get_account_balances(self) -> Dict:
+    def get_account_balances(self) -> dict:
         """
         Get account balances from both exchanges.
 
@@ -232,7 +232,7 @@ class CryptoArbitrageBot:
         return balances
 
     def simulate_arbitrage_trade(
-        self, opportunity: Dict, trade_amount_usd: float = 100.0
+        self, opportunity: dict, trade_amount_usd: float = 100.0
     ):
         """
         Simulate an arbitrage trade.
@@ -264,7 +264,7 @@ class CryptoArbitrageBot:
             f"   Price Difference: ${opportunity['price_diff']:.2f} ({profit_pct:.2%})"
         )
         logger.info(f"   Direction: {opportunity['direction']}")
-        logger.info(f"   ")
+        logger.info("   ")
         logger.info(f"   Trade Amount: ${trade_amount_usd:.2f}")
         logger.info(f"   Crypto Amount: {crypto_amount:.6f} {opportunity['rh_symbol']}")
         logger.info(f"   Gross Profit: ${expected_profit:.2f}")
@@ -272,9 +272,9 @@ class CryptoArbitrageBot:
         logger.info(f"   Net Profit: ${net_profit:.2f} ({net_profit_pct:.2%})")
 
         if net_profit > 0:
-            logger.info(f"   ✅ Profitable after fees!")
+            logger.info("   ✅ Profitable after fees!")
         else:
-            logger.info(f"   ❌ Not profitable after fees.")
+            logger.info("   ❌ Not profitable after fees.")
 
     def monitor_arbitrage_opportunities(self):
         """
@@ -371,7 +371,7 @@ class CryptoArbitrageBot:
                 for symbol, amount in exchange_balances.items():
                     logger.info(f"     {symbol}: {amount:.6f}")
             else:
-                logger.info(f"     No crypto positions found")
+                logger.info("     No crypto positions found")
 
         # Run monitoring
         try:

@@ -56,7 +56,7 @@ else:
                 valid_choice = True
             else:
                 raise ValueError
-        except:
+        except (ValueError, IndexError):
             # you could put the print statement outside the try-except block and have this
             # except have a simple 'pass' but then the "I'm sorry" statement would ALWAYS
             # print instead of printing only on failed entries. This is why I manually

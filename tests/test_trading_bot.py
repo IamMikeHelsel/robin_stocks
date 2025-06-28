@@ -3,8 +3,7 @@ Integration tests for trading bot functionality.
 These tests focus on trading bot use cases and strategies.
 """
 
-from datetime import datetime, timedelta
-from unittest.mock import MagicMock, Mock, patch
+from unittest.mock import Mock, patch
 
 import pytest
 

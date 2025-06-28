@@ -17,8 +17,7 @@ Make sure to configure your .env file first!
 import logging
 import os
 import time
-from datetime import datetime, timedelta
-from typing import Dict, List, Optional
+from typing import Optional
 
 from dotenv import load_dotenv
 
@@ -235,13 +234,12 @@ class BasicTradingBot:
         """
         mas = self.get_moving_averages(symbol)
 
-        if all(mas.values()):
-            # Buy signal: short MA crosses above long MA
-            if mas["short_ma"] > mas["long_ma"]:
-                logger.info(
-                    f"{symbol}: Buy signal - Short MA {mas['short_ma']:.2f} > Long MA {mas['long_ma']:.2f}"
-                )
-                return True
+        # Buy signal: short MA crosses above long MA
+        if all(mas.values()) and mas["short_ma"] > mas["long_ma"]:
+            logger.info(
+                f"{symbol}: Buy signal - Short MA {mas['short_ma']:.2f} > Long MA {mas['long_ma']:.2f}"
+            )
+            return True
 
         return False
 
@@ -257,13 +255,12 @@ class BasicTradingBot:
         """
         mas = self.get_moving_averages(symbol)
 
-        if all(mas.values()):
-            # Sell signal: short MA crosses below long MA
-            if mas["short_ma"] < mas["long_ma"]:
-                logger.info(
-                    f"{symbol}: Sell signal - Short MA {mas['short_ma']:.2f} < Long MA {mas['long_ma']:.2f}"
-                )
-                return True
+        # Sell signal: short MA crosses below long MA
+        if all(mas.values()) and mas["short_ma"] < mas["long_ma"]:
+            logger.info(
+                f"{symbol}: Sell signal - Short MA {mas['short_ma']:.2f} < Long MA {mas['long_ma']:.2f}"
+            )
+            return True
 
         return False
 

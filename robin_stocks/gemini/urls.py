@@ -40,9 +40,9 @@ class URLS:
     @classmethod
     def get_endpoint(cls, url):
         if match(cls.__base_sandbox_url, url, IGNORECASE):
-            _, end = split(cls.__base_sandbox_url, url, IGNORECASE)
+            _, end = split(cls.__base_sandbox_url, url, flags=IGNORECASE)
         elif match(cls.__base_url, url, IGNORECASE):
-            _, end = split(cls.__base_url, url, IGNORECASE)
+            _, end = split(cls.__base_url, url, flags=IGNORECASE)
         else:
             raise ValueError("The URL has the wrong base.")
 
